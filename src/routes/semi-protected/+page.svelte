@@ -2,10 +2,15 @@
 	import { page } from '$app/stores';
 </script>
 
-<h1>semi-Protected page</h1>
+<h2>semi-protected page</h2>
+
+<h3>Content for All</h3>
+<p>You can access this content even you are <b>not</b> signed in.</p>
+<br />
 {#if $page.data.session}
-	<p>This is a protected content. You can access this content because you are signed in.</p>
-	<p>Session expiry: {$page.data.session?.expires}</p>
+	<h3>Content for authenticated user</h3>
+	<p>You can access this content only if you are signed in.</p>
 {:else}
-	<p>This is a protected content. You can't access this content because you are not signed in.</p>
+	<br />
+	<p>Some secret content, please sign in.</p>
 {/if}

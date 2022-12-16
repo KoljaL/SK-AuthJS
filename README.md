@@ -11,7 +11,6 @@ Did not work right out of the box, but with a little [help](https://github.com/n
 - [ ] Authenticate via email & password
 - [ ] Verification Mail
 - [ ] Seed-data aka user, posts, comments, etc
-- [ ] 
 
 
 
