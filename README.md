@@ -4,6 +4,12 @@ Authenticate user via [AuthJS-SvelteKit](https://authjs.dev/reference/sveltekit/
 Did not work right out of the box, but with a little [help](https://github.com/nextauthjs/next-auth/issues/6076).   
 
 
+
+## [Demo](https://sveltekit-authjs-prisma.vercel.app/)
+currently not working on vercel, but locally
+
+
+
 ## ToDO
 - [x] connecting SvelteKit, AuthJS and Prisma
 - [ ] make protected routes secure via [await parent()](https://www.youtube.com/watch?v=UbhhJWV3bmI)
