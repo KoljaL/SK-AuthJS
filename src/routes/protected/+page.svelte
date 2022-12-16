@@ -2,6 +2,8 @@
 	import { page } from '$app/stores';
 </script>
 
-<h1>Protected page</h1>
-<p>This is a protected content. You can access this content because you are signed in.</p>
-<p>Session expiry: {$page.data.session?.expires}</p>
+<h2>protected page</h2>
+{#if $page.data.session}
+	<h3>$page.data.session</h3>
+	<pre class="code">{JSON.stringify($page.data.session, null, 2)}</pre>
+{/if}

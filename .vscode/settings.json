@@ -1,0 +1,33 @@
+{
+  "files.exclude": {
+    "**/.vscode": true,
+    "**/node_modules": true,
+    "**/build": true,
+    "**/tests": true,
+    "**/.svelte-kit": true,
+    "**/.gitignore": true,
+    "**/.npmrc": true,
+    "**/.prettierignore": true,
+    "**/.eslintignore": true,
+    "**/.eslintrc.cjs": true,
+    "**/.prettierrc": true,
+    "**/package-lock.json": true,
+    "**/playwright.config.ts": true,
+    "**/vite.config.ts": true,
+    "**/pnpm-lock.yaml": true,
+    "**/postcss.config.cjs": true,
+    "**/tailwind.config.cjs": true,
+    "**/tsconfig.json": true
+  },
+  "window.titleBarStyle": "custom",
+  "window.title": "${folderName}",
+  "workbench.layoutControl.type": "menu",
+  "window.commandCenter": false,
+
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#1e2127",
+    "activityBar.foreground": "#1eb1fc",
+    "titleBar.activeBackground": "#0382c3",
+    "titleBar.activeForeground": "#ffffff", 
+  },
+}
