@@ -1,8 +1,7 @@
 rm prisma/dev.db
 rm -r prisma/migrations
 npx prisma migrate dev --name init
-
-npm run dev
+# npm run dev
 
 
 # rm prisma/dev.db-journal
