@@ -12,6 +12,8 @@
 	<nav>
 		<a href="/">Home</a>
 		<a href="/protected">Protected</a>
+		<a href="/protected/P1">P1</a>
+		<a href="/protected/P2">P2</a>
 		<a href="/semi-protected">semi Protected</a>
 	</nav>
 	<Auth />

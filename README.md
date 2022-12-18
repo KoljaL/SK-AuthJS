@@ -13,7 +13,7 @@ currently not working on vercel, but locally
 ## ToDO
 - [x] connecting SvelteKit, AuthJS and Prisma
 - [ ] make protected routes secure via [await parent()](https://www.youtube.com/watch?v=UbhhJWV3bmI)
-- [ ] Authenticate via GitHub OAuth
+- [x] Authenticate via GitHub OAuth
 - [ ] Authenticate via email & password
 - [ ] Verification Mail
 - [ ] Seed-data aka user, posts, comments, etc
