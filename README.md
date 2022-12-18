@@ -41,3 +41,4 @@ and `next-auth` is replaced with `@auth/core`
 "@next-auth/prisma-adapter": "^1.0.5",
 "next-auth": "^4.18.6"
 ```
+

@@ -1,9 +1,13 @@
 <script lang="ts">
 	import Auth from '$lib/layout/Auth.svelte';
+	import Logo from '$lib/svg/SvelteMateLogo.svelte';
 </script>
 
 <header>
-	<h2>SvelteKit + AuthJS + Prisma</h2>
+	<h2>
+		<Logo />
+		SvelteKit + AuthJS + Prisma
+	</h2>
 
 	<nav>
 		<a href="/">Home</a>
@@ -19,7 +23,8 @@
 		flex-direction: row;
 		align-items: baseline;
 		justify-content: space-between;
-		margin-top: 1rem;
+		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
 		border-bottom: 1px solid var(--color-shadow);
 	}
 
@@ -27,20 +32,9 @@
 		color: var(--color-svelte);
 		margin: 0;
 	}
-	header .logo {
-		display: flex;
-	}
-	header .logo a:hover {
-		filter: none;
-	}
-	:global(.logo svg) {
-		height: 50px;
+
+	:global(h2 svg) {
+		height: 40px;
 		width: auto;
 	}
-	/* header .logo span {
-		color: var(--color-svelte);
-		font-size: 2rem;
-		font-weight: 600;
-		margin-left: 0.15rem;
-	} */
 </style>
