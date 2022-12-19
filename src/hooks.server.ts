@@ -18,7 +18,6 @@ const prisma = new PrismaClient()
  * 
  */
 const isUser = async ({ event, resolve }) => {
-	const result = await resolve(event)
 	const session = await event.locals.getSession()
 
 	console.log('\n\n hooks.server.ts', new Date())
@@ -27,6 +26,8 @@ const isUser = async ({ event, resolve }) => {
 	if (!session?.user && event.url.pathname.includes('/protected')) {
 		throw redirect(302, '/#not_allowed:'+event.url.pathname)
 	}
+	const result = await resolve(event)
+
 	return result
 }
 
@@ -70,7 +71,7 @@ const doAuth = SvelteKitAuth({
 	]
 })
 
-export const handle = sequence(isUser, doAuth )
+export const handle = sequence(doAuth,isUser )
 
 //
 //

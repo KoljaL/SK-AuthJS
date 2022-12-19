@@ -1,10 +1,13 @@
 import { Prisma } from '@prisma/client'
+import { faker } from '@faker-js/faker'
 
 const users = [
 	{
 		name: 'Peter',
 		email: 'peter@mail.com',
-		image: 'http://localhost:5173/img/peter.jpg'
+		image: 'http://localhost:5173/img/peter.jpg',
+		createdAt: faker.date.past(),
+		updatedAt: faker.date.recent()
 	},
 	{
 		name: 'Petra',
