@@ -1,6 +1,7 @@
 // https://100lvlmaster.medium.com/seeding-nestjs-with-prisma-and-faker-af6a36a3954d
 // https://www.w3schools.com/js/js_random.asp
 // https://github.com/ctrlplusb/prisma-pg-jest/blob/master/prisma/seed.ts
+// https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries
 
 import { faker } from '@faker-js/faker'
 import { users, tags, categories, topics, comments } from './data.js'
@@ -108,13 +109,12 @@ function createTopics (count) {
 			excerp: faker.lorem.sentence(),
 			private: false,
 			tags: randomTags().toString(),
-			// tags: 'tag',
 			content: faker.lorem.paragraphs(),
 			image: faker.image.imageUrl(),
 			createdAt: faker.date.past(),
 			updatedAt: faker.date.recent(),
-			comment_count: 0
-			// category_id: 1
+			comment_count: 0,
+			category_id: rnd(1, fakeCatsArray.length)
 		}
 		fakeTopics.push(topic)
 	}
@@ -137,13 +137,15 @@ function createUser (amountOfUsers) {
 		const firstName = faker.name.firstName()
 		const lastName = faker.name.lastName()
 
+		const topicCount = rnd(0, 5)
 		const user = {
 			name: firstName,
 			email: faker.internet.email(firstName, lastName),
 			image: faker.image.avatar(),
 			createdAt: faker.date.past(),
 			updatedAt: faker.date.recent(),
-			Topic: { create: createTopics(rnd(3, 10)) }
+			topic_count: topicCount,
+			Topic: { create: createTopics(topicCount) }
 		}
 
 		fakeUser.push(user)
@@ -151,12 +153,27 @@ function createUser (amountOfUsers) {
 	return fakeUser
 }
 
+function createComment (amountOfComments) {
+	const fakeComments = []
+	for (let i = 0; i < amountOfComments; i++) {
+		const comment = {
+			content: faker.lorem.sentence(),
+			createdAt: faker.date.past(),
+			updatedAt: faker.date.recent(),
+			parent: 0
+		}
+		fakeComments.push(comment)
+	}
+	return fakeComments
+}
+
 //
 // RUN & EXPORT
 //
+const COMMENTS = createComment(1)
 const CATEGORIES = createCategories()
 const TAGS = createTags()
-const USER = createUser(1)
+const USER = createUser(5)
 // console.log('\n\nUSER:\n', USER)
 
-export { USER, CATEGORIES, TAGS }
+export { USER, CATEGORIES, TAGS, COMMENTS }
