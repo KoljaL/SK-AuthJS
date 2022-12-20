@@ -110,7 +110,7 @@ function createTopics (count) {
 			private: false,
 			tags: randomTags().toString(),
 			content: faker.lorem.paragraphs(),
-			image: faker.image.imageUrl(),
+			image: faker.image.animals(640, 480, false),
 			createdAt: faker.date.past(),
 			updatedAt: faker.date.recent(),
 			comment_count: 0,

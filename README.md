@@ -42,3 +42,6 @@ and `next-auth` is replaced with `@auth/core`
 "next-auth": "^4.18.6"
 ```
 
+- https://dev.to/twisha/using-credentials-provider-with-a-custom-backend-in-nextauth-js-43k4
+- https://github.com/rodneylab/sveltekit-instagram-infinite-scroll/tree/main/src/routes
+- 

@@ -15,6 +15,7 @@
 		<a href="/protected/P1">P1</a>
 		<a href="/protected/P2">P2</a>
 		<a href="/semi-protected">semi Protected</a>
+		<a href="/svoard">Svoard</a>
 	</nav>
 	<Auth />
 </header>
