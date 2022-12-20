@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { signIn, signOut } from '@auth/sveltekit/client';
 	import LogOutIcon from '$lib/svg/logout.svelte';
 	import LogInIcon from '$lib/svg/login.svelte';
 
+	import { signIn, signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
 </script>
 
