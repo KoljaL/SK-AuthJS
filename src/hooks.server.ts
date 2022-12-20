@@ -15,16 +15,14 @@ const prisma = new PrismaClient()
 /**
  *
  * isUser HOOK
- * 
+ *
  */
 const isUser = async ({ event, resolve }) => {
 	const session = await event.locals.getSession()
 
-	console.log('\n\n hooks.server.ts', new Date())
-	console.log(event.url.pathname)
-
 	if (!session?.user && event.url.pathname.includes('/protected')) {
-		throw redirect(302, '/#not_allowed:'+event.url.pathname)
+		// not a secure way to do this, because it will show the user the path of the protected page
+		throw redirect(302, '/#not_allowed:' + event.url.pathname)
 	}
 	const result = await resolve(event)
 
@@ -45,82 +43,66 @@ const doAuth = SvelteKitAuth({
 		}
 	},
 	providers: [
+		// login via GitHub
 		GitHub({
 			clientId: GITHUB_ID,
 			clientSecret: GITHUB_SECRET
 		}),
 		CredentialsProvider({
-			async authorize (credentials) {
-				const authResponse = await fetch('/users/login', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify(credentials)
-				})
+			name: 'Credentials',
+			credentials: {
+				username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
+				password: { label: 'Password', type: 'password' }
+			},
+			async authorize (credentials, req) {
+				console.log('credentials', credentials)
+				console.log('req', req)
 
-				if (!authResponse.ok) {
+				// Add logic here to look up the user from the credentials supplied
+				const user = { id: '1', name: 'J Smith', email: 'jsmith@example.com' }
+
+				if (user) {
+					// Any object returned will be saved in `user` property of the JWT
+					console.log(user)
+					return user
+				} else {
+					console.log('else', user)
+					// If you return null then an error will be displayed advising the user to check their details.
 					return null
+
+					// You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
 				}
-
-				const user = await authResponse.json()
-
-				return user
 			}
 		})
 	]
 })
 
-export const handle = sequence(doAuth,isUser )
-
 //
-//
-// OLD CODE
-//
+// Export multiple hooks by sequence
 //
 
-// export const handle = SvelteKitAuth({
-// 	adapter: PrismaAdapter(prisma),
-// 	session: {
-// 		strategy: 'database',
-// 		generateSessionToken: () => {
-// 			return crypto.randomUUID()
-// 		}
+export const handle = sequence(doAuth, isUser)
+
+// const data = await request.formData()
+// const name = data.get('name')
+// const password = data.get('password')
+// console.log('login', name, password)
+// console.log(credentials)
+
+// login via name & password
+// CredentialsProvider({
+// 	async authorize (credentials) {
+// const authResponse = await fetch('/users/login', {
+// 	method: 'POST',
+// 	headers: {
+// 		'Content-Type': 'application/json'
 // 	},
-// 	providers: [
-// 		GitHub({
-// 			clientId: GITHUB_ID,
-// 			clientSecret: GITHUB_SECRET
-// 		}),
-// 		CredentialsProvider({
-// 			async authorize (credentials) {
-// 				const authResponse = await fetch('/users/login', {
-// 					method: 'POST',
-// 					headers: {
-// 						'Content-Type': 'application/json'
-// 					},
-// 					body: JSON.stringify(credentials)
-// 				})
-
-// 				if (!authResponse.ok) {
-// 					return null
-// 				}
-
-// 				const user = await authResponse.json()
-
-// 				return user
-// 			}
-// 		})
-// 	]
+// 	body: JSON.stringify(credentials)
 // })
-
-// export const load: LayoutServerLoad = async (event) => {
-//     let session = await event.locals.getSession()
-//     console.log(session)
-//     if (!session?.user ) {
-//       throw redirect(302, "/#not_allowed")
-//     }
-//     return {
-//       session: session
-//     }
-//   }
+// if (!authResponse.ok) {
+// 	return null
+// }
+// const user = await authResponse.json()
+// return user
+// 	}
+// })
