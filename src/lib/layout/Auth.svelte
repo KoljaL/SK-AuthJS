@@ -21,6 +21,13 @@
 		<span class="icon" on:click={() => signIn('github')} on:keydown={() => signIn('github')}
 			><LogInIcon /></span
 		>
+
+		<span>Sign In with credentials</span>
+		<span
+			class="icon"
+			on:click={() => signIn('credentials')}
+			on:keydown={() => signIn('credentials')}><LogInIcon /></span
+		>
 	{/if}
 </div>
 
